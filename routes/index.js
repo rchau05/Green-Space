@@ -4,6 +4,7 @@ var router = express.Router();
 var passport = require('passport');
 var jwt = require('express-jwt');
 
+
 // Middleware for authenticating jwt
 var auth = jwt({
   secret: 'SECRET',
@@ -20,6 +21,7 @@ router.get('/', function (req, res, next) {
 var mongoose = require('mongoose');
 require('../models/Posts');
 require('../models/Comments');
+require('../models/Users')
 var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
 var User = mongoose.model('User');
@@ -59,7 +61,7 @@ router.param('comment', function(req, res, next, id) {
 
 // Create user
 router.post('/register', function(req, res, next) {
-  if(!req.body.username || req.body.password) {
+  if(!req.body.username || !req.body.password) {
     return res.status(400).json({
       message: "Please fill out all of the fields"
     });
@@ -69,7 +71,7 @@ router.post('/register', function(req, res, next) {
 
   user.username = req.body.username;
 
-  user.setPassword(req.body.password);
+  user.setPassword(req.body.password)
 
   user.save(function (err) {
     if(err) {
@@ -152,7 +154,7 @@ router.post('/posts', auth, function (req, res, next) {
 router.post('/posts/:post/comments', auth, function(req, res, next) {
   var comment = new Comment(req.body);
   comment.post = req.post;
-  comment.author = req.payload.username
+  comment.author = req.payload.username;
 
   comment.save(function(err, comment) {
     if(err) {
