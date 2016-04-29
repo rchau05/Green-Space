@@ -15,7 +15,11 @@ require('./models/Comments');
 require('./models/Users');
 require('./config/passport');
 
-mongoose.connect('mongodb://localhost/green')
+mongoose.connect(
+  process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost/green'
+);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
