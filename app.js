@@ -4,8 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-// var crypto = require('crypto');
-// var jwt = require('jsonwebtoken');
 
 // Mongo database
 var mongoose = require('mongoose');
