@@ -16,7 +16,7 @@ require('./config/passport');
 mongoose.connect(
   process.env.MONGOLAB_URI ||
   process.env.MONGOHQ_URL ||
-  'mongodb://localhost/green' 
+  'mongodb://localhost/green'
 );
 
 var routes = require('./routes/index');
