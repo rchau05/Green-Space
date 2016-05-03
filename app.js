@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var keys = require('keys');
 
 // Mongo database
 var mongoose = require('mongoose');
@@ -16,7 +17,7 @@ require('./config/passport');
 mongoose.connect(
   process.env.MONGOLAB_URI ||
   process.env.MONGOHQ_URL ||
-  'mongodb://rchau05:screwdis1@ds047075.mlab.com:47075/heroku_9x666504'||
+  keys.MONGO_URL||
   'mongodb://localhost/green'
 );
 
